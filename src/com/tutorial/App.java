@@ -7,19 +7,15 @@ class Gunpla {
     boolean isInProduction;
     Origin gundamOrigin;
 
-    // Gunpla(String grade, String model, Double price, boolean isInProduction){
-    //     this.grade = grade;
-    //     this.model = model;
-    //     this.price = price;
-    //     this.isInProduction = isInProduction;
-    // idk why 2nd constructor ga bisa call "default" constructor...
-    // }
-
-    Gunpla(String grade, String model, Double price, boolean isInProduction, Origin gundamOrigin){
+    Gunpla(String grade, String model, Double price, boolean isInProduction){
         this.grade = grade;
         this.model = model;
         this.price = price;
         this.isInProduction = isInProduction;
+    }
+
+    Gunpla(String grade, String model, Double price, boolean isInProduction, Origin gundamOrigin){
+        this(grade, model, price, isInProduction);
         this.gundamOrigin = gundamOrigin;
     }
 
@@ -53,7 +49,7 @@ class Gunpla {
         System.out.println("Model type: " + this.getModel());
         System.out.println("Grade: " + this.getGrade());
         if (this.isInProduction == true) {
-            System.out.println("Price: ");
+            System.out.println("Price: " + this.getPrice());
         }
         else {
             System.out.println("Price: null");
@@ -84,9 +80,8 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println();
         Origin rebornOrigin = new Origin("Gundam 00 S2", 2010, "Ribbons Almark");
-        Gunpla myGunpla = new Gunpla("HG", "Reborn Gundam", 19.0, false, rebornOrigin);
+        Gunpla myGunpla = new Gunpla("HG", "Reborn Gundam", 20.0, true, rebornOrigin);
 
-        myGunpla.setPrice(35.0);
         myGunpla.display();
     }
 }
