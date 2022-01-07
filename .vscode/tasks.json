@@ -1,0 +1,20 @@
+{
+    "version" : "1.0.0",
+    "tasks" : [
+        {
+            "label" : "run java App",
+            "type" : "shell",
+            "command" : "java",
+            "args" : [
+                "--enable-preview",
+                "-cp",
+                "./bin",
+                "com.tutorial.App"
+            ],
+            "group" : {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
