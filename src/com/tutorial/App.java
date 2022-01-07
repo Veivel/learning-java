@@ -1,99 +1,78 @@
 package com.tutorial;
 
-class Gunpla {
-    String grade;
-    String model;
-    private Double price;
-    boolean isInProduction;
-    Origin gundamOrigin;
+class formulaCar {
+    Pilot driver;
+    private String carClass;
+    private String engine;
+    private Integer topSpeed;
+    String lapTime;
 
-    Gunpla(String grade, String model, Double price, boolean isInProduction){
-        this.grade = grade;
-        this.model = model;
-        this.price = price;
-        this.isInProduction = isInProduction;
-    }
-
-    Gunpla(String grade, String model, Double price, boolean isInProduction, Origin gundamOrigin){
-        this(grade, model, price, isInProduction);
-        this.gundamOrigin = gundamOrigin;
+    public formulaCar(Pilot driver, String carClass, String engine, Integer topSpeed, String lapTime) {
+        this.driver = driver;
+        this.carClass = carClass;
+        this.engine = engine;
+        this.topSpeed = topSpeed;
     }
 
-    String getGrade() {
-        return this.grade;
-    }
-    String getModel() {
-        return this.model;
-    }
-    Double getPrice() {
-        if (this.isInProduction == true) {
-            return this.price;
-        }
-        else {
-            return null;
-        }
-    }
-    String getPilot() {
-        return this.gundamOrigin.pilot;
+    String getEngine() {
+        return this.carClass + "-type engine: " + this.engine;
     }
 
-    void displayOrigin() {
-        this.gundamOrigin.display();
+    Integer getTopSpeed() {
+        return this.topSpeed;
     }
 
-    void setPrice(Double newPrice) {
-        this.price = newPrice;
-    }
-
-    void setModel(String newModel){
-        this.model = newModel;
-    }
-
-    void display() {
-        System.out.println("Model type: " + this.getModel());
-        System.out.println("Grade: " + this.getGrade());
-        if (this.isInProduction == true) {
-            System.out.println("Price: " + this.getPrice());
-        }
-        else {
-            System.out.println("Price: null");
-        }
-        if (this.gundamOrigin != null) {
-            displayOrigin();
-        }
-        System.out.println();
-    }
+    // no need laptime getter-setters
 }
 
-class Origin {
-    String firstAppearance;
-    Integer year;
-    String pilot;
+class Pilot {
+    private String name;
+    private Integer age;
+    private Boolean hasSuperLicense;
+    
+    public Pilot(String name, Integer age, Boolean hasSuperLicense) { 
+        this.name = name;
+        this.age = age;
+        this.hasSuperLicense = hasSuperLicense;
+    }
 
-    Origin(String firstAppearance, Integer year, String pilot) {
-        this.firstAppearance = firstAppearance;
-        this.year = year;
-        this.pilot = pilot;
+    public Pilot(String name, Integer age) {
+        this(name, age, true);
     }
 
     void display() {
-        System.out.println("First appearance: " + this.firstAppearance);
-        System.out.println("Year of origin: " + this.year);
-        System.out.println("Pilot name: " + this.pilot);
+        System.out.println("Name: " + this.name);
+        System.out.println("Age: " + this.age);
+        System.out.println("Has super license: " + this.hasSuperLicense);
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Integer getAge() {
+        return this.age;   
+    }
+
+    public Boolean checkSuperLicense() {
+        return this.hasSuperLicense;
+    }
+
+    void giveSuperLicense() {
+        this.hasSuperLicense = true;
+    }
+    
+    void revokeSuperLicense() {
+        this.hasSuperLicense = false;
+    }
+
 }
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println();
-        Origin rebornOrigin = new Origin("Gundam 00 S2", 2010, "Ribbons Almark");
-        Gunpla myGunpla = new Gunpla("HG", "Reborn Gundam", 20.0, false, rebornOrigin);
-        
-        // SALAH (only copy address) --> Gunpla Gunpla2 = myGunpla;
-        Gunpla Gunpla2 = new Gunpla("HG", "Reversible Gundam", 24.0, true);
-        Gunpla2.setModel("Reversible Gundam");
+    public static void main(String[] args) {
+        Pilot LEC = new Pilot("Charles Leclerc", 22);
+        formulaCar SF90 = new formulaCar(LEC, "F1", "Ferrari 2020", 387, "1:33:12");
 
-        myGunpla.display();
-        // PRIVATE instance variable: System.out.println(Gunpla2.price);
+        SF90.driver.display();
     }
 }
