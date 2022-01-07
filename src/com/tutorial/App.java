@@ -3,7 +3,7 @@ package com.tutorial;
 class Gunpla {
     String grade;
     String model;
-    Double price;
+    private Double price;
     boolean isInProduction;
     Origin gundamOrigin;
 
@@ -45,6 +45,10 @@ class Gunpla {
         this.price = newPrice;
     }
 
+    void setModel(String newModel){
+        this.model = newModel;
+    }
+
     void display() {
         System.out.println("Model type: " + this.getModel());
         System.out.println("Grade: " + this.getGrade());
@@ -54,7 +58,10 @@ class Gunpla {
         else {
             System.out.println("Price: null");
         }
-        displayOrigin();
+        if (this.gundamOrigin != null) {
+            displayOrigin();
+        }
+        System.out.println();
     }
 }
 
@@ -80,8 +87,13 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println();
         Origin rebornOrigin = new Origin("Gundam 00 S2", 2010, "Ribbons Almark");
-        Gunpla myGunpla = new Gunpla("HG", "Reborn Gundam", 20.0, true, rebornOrigin);
+        Gunpla myGunpla = new Gunpla("HG", "Reborn Gundam", 20.0, false, rebornOrigin);
+        
+        // SALAH (only copy address) --> Gunpla Gunpla2 = myGunpla;
+        Gunpla Gunpla2 = new Gunpla("HG", "Reversible Gundam", 24.0, true);
+        Gunpla2.setModel("Reversible Gundam");
 
         myGunpla.display();
+        // PRIVATE instance variable: System.out.println(Gunpla2.price);
     }
 }
