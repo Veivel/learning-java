@@ -2,44 +2,28 @@ package com.tutorial;
 import java.util.*;
 
 public class App {
-    
-    public static Double calculate(Double a, Double b, String op){
-        switch(op) {
-            case "+":
-                return a + b;
-            case "-":
-                return a - b;
-            case "*":
-                return a * b;
-            case "/":
-                return a / b;
-            default:
-                return 9999999999999.999999999;
-        }
-
-    }
     public static void main(String[] args) {
-        List<String> validOps = new ArrayList<String>();
-        validOps.add("+");
-        validOps.add("-");
-        validOps.add("*");
-        validOps.add("/");
-
         Scanner userInput = new Scanner(System.in);
-
+        System.out.println("N-th fibonacci number: ");
+        int n = userInput.nextInt();
         System.out.println();
-        System.out.println("First value:");
-        Double numA = userInput.nextDouble();
-        System.out.println("Second value:");
-        Double numB = userInput.nextDouble();
-        System.out.println("Operator (+, -, *, /):");
-        String operator = userInput.next();
 
-        Double res = calculate(numA, numB, operator);
-        String x = validOps.contains(operator) ? res.toString() : "invalid operator";
+        int first = 0;
+        int second = 1;
+
+        int x = 1;
+        for (int i = 2; i <= n; i++) {
+            x = first + second;
+            //System.out.println(x);
+            first = second;
+            second = x;
+        }
         System.out.println(x);
-
         userInput.close();
+
+        String str = "de";
+        String newStr = str.replaceFirst("d", "");
+        System.out.println(newStr);
     }
 
 }
