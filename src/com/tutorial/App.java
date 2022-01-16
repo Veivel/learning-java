@@ -1,45 +1,23 @@
 package com.tutorial;
-import java.util.*;
+// import java.util.*;
 
 public class App {
-    
-    public static Double calculate(Double a, Double b, String op){
-        switch(op) {
-            case "+":
-                return a + b;
-            case "-":
-                return a - b;
-            case "*":
-                return a * b;
-            case "/":
-                return a / b;
-            default:
-                return 9999999999999.999999999;
+    public static Boolean isPrime(Integer x) {
+        for (int i = 2 ; i < x ; i++) {
+            if (x % i == 0) {
+                return false;
+            }
         }
-
+        return true;
     }
     public static void main(String[] args) {
-        List<String> validOps = new ArrayList<String>();
-        validOps.add("+");
-        validOps.add("-");
-        validOps.add("*");
-        validOps.add("/");
+        System.out.println(isPrime(2));
 
-        Scanner userInput = new Scanner(System.in);
-
-        System.out.println();
-        System.out.println("First value:");
-        Double numA = userInput.nextDouble();
-        System.out.println("Second value:");
-        Double numB = userInput.nextDouble();
-        System.out.println("Operator (+, -, *, /):");
-        String operator = userInput.next();
-
-        Double res = calculate(numA, numB, operator);
-        String x = validOps.contains(operator) ? res.toString() : "invalid operator";
-        System.out.println(x);
-
-        userInput.close();
+        for (int x = 1 ; x < 100; x++){
+            if (isPrime(x)) {
+                System.out.println(x);
+            }
+        }
     }
 
 }
