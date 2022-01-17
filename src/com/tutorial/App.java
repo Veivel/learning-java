@@ -1,8 +1,6 @@
 package com.tutorial;
 // import java.util.*;
 
-import org.w3c.dom.ranges.Range;
-
 public class App {
     public static Boolean isPrime(Integer x) {
         for (int i = 2 ; i < x ; i++) {
