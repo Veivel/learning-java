@@ -16,14 +16,36 @@ public class App {
             default:
                 return 9999999999999.999999999;
         }
+    }
+
+    public static Boolean existsIn(String op, String[] opList) {
+        for (String validOperator : opList) {
+            if (op.equals(validOperator)) { 
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void prompt() {
+        Scanner promptInput = new Scanner(System.in);
+        String runAgain;
+        
+        do {
+            System.out.println("\nRun again? (Y/N)");
+            runAgain = promptInput.next();
+        } 
+        while ( !(runAgain.equals("Y") || runAgain.equals("N")) );
+
+        if (runAgain.equals("N")) return;
+        else {
+            main(null);
+        }
 
     }
+
     public static void main(String[] args) {
-        List<String> validOps = new ArrayList<String>();
-        validOps.add("+");
-        validOps.add("-");
-        validOps.add("*");
-        validOps.add("/");
+        String[] validOps = {"+","-","*","/"};
 
         Scanner userInput = new Scanner(System.in);
 
@@ -36,10 +58,10 @@ public class App {
         String operator = userInput.next();
 
         Double res = calculate(numA, numB, operator);
-        String x = validOps.contains(operator) ? res.toString() : "invalid operator";
+        String x = existsIn(operator, validOps) ? res.toString() : "invalid operator";
         System.out.println(x);
 
-        userInput.close();
+        prompt();
     }
 
 }
